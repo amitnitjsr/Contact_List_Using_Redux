@@ -3,6 +3,8 @@ import ReactTable from 'react-table';
 import IconButton from '@material-ui/core/IconButton';
 import ContactList from './contactList';
 import Checkbox from '@material-ui/core/Checkbox';
+import Avatar from '@material-ui/core/Avatar';
+import { Row, Col } from 'reactstrap';
 import './common.css';
 
 // const isItemSelected = isSelected(row.name);
@@ -69,17 +71,29 @@ class Table extends React.Component {
                             sortable: false,
                             filterable: false,
                             foldable: true,
-                            width: 100
+                            width: 75
                         },
                         {
-                            Header: () => <div className="Header">Basic info</div>,
+                            Header: () => <div className="Header" >Basic info</div>,
                             // accessor: 'name',
                             className: 'Name TextCenter',
                             headerClassName: 'Name TextCenter',
                             Cell: (row) => {
                                 return (
-                                    <div> <span style={{ fontWeight: 600 }}>{row.row._original.name}</span><br />
-                                        <span style={{ fontSize: '13px' }}>{row.row._original.email}</span></div>
+                                    <div style={{ padding: '13px' }}>
+                                        <Row>
+                                            <Avatar className="bg-secondary size-80">
+                                                <span style={{ fontSize: '14px' }}>
+                                                    {row.row._original.name.match(/\b(\w)/g).join('')}
+                                                </span></Avatar>
+                                            <Row>
+                                                <Col>
+                                                    <span style={{ fontWeight: 600 }}>{row.row._original.name}</span><br />
+                                                    <span style={{ fontSize: '13px' }}>{row.row._original.email}</span>
+                                                </Col>
+                                            </Row>
+                                        </Row>
+                                    </div>
                                 )
                             },
                             foldable: true
@@ -91,31 +105,31 @@ class Table extends React.Component {
                             className: 'Description TextCenter',
                             headerClassName: 'Description TextCenter'
                         },
-                        {
-                            Header: 'Action',
-                            sortable: false,
-                            filterable: false,
-                            className: 'Action TextCenter',
-                            headerClassName: 'Action TextCenter',
-                            id: 'button',
-                            style: { textAlign: 'center' },
-                            width: 200,
-                            Cell: (row) => {
-                                return (
-                                    <span>
-                                        <IconButton
-                                            className=""
-                                            onClick={() =>
-                                                this.props.history.push(
-                                                    '/credentials/edit/' + row.row._original.id + '/'
-                                                )}
-                                        >
-                                            <i className="zmdi zmdi-edit zmdi-hc-fw table-icon" />
-                                        </IconButton>
-                                    </span>
-                                );
-                            }
-                        }
+                        // {
+                        //     Header: 'Action',
+                        //     sortable: false,
+                        //     filterable: false,
+                        //     className: 'Action TextCenter',
+                        //     headerClassName: 'Action TextCenter',
+                        //     id: 'button',
+                        //     style: { textAlign: 'center' },
+                        //     width: 200,
+                        //     Cell: (row) => {
+                        //         return (
+                        //             <span>
+                        //                 <IconButton
+                        //                     className=""
+                        //                     onClick={() =>
+                        //                         this.props.history.push(
+                        //                             '/credentials/edit/' + row.row._original.id + '/'
+                        //                         )}
+                        //                 >
+                        //                     <i className="zmdi zmdi-edit zmdi-hc-fw table-icon" />
+                        //                 </IconButton>
+                        //             </span>
+                        //         );
+                        //     }
+                        // }
                     ]}
                     pageSize={this.state.tableData.length}
                     showPaginationBottom={false}

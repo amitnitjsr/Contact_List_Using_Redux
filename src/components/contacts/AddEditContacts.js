@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './AddEditContacts.css';
+import { Row, Col } from 'reactstrap';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles({
     root: {
@@ -23,25 +25,40 @@ export default function MediaCard() {
 
     return (
         <div>
+
             <Card className='card_body'>
                 <CardContent>
-                    <Typography color="textSecondary" gutterBottom>
-                        Word of the Day
-        </Typography>
-                    <Typography variant="h5" component="h2">
+                    <Row className='xs'>
+                        <Avatar className="bg-secondary size-80"><span style={{ fontSize: '14px' }}>MK</span></Avatar>
 
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        adjective
-        </Typography>
-                    <Typography variant="body2" component="p">
-                        well meaning and kindly.
-          <br />
-                        {'"a benevolent smile"'}
-                    </Typography>
+                    </Row>
+                    <Row>Full Name</Row>
+                    <Row>Designaation</Row>
+                    <div style={{ textAlign: 'initial' }}>
+                        <Row>
+                            <Col style={{ leftAlgin: 'auto' }}>Full Name:</Col>
+                            <Col>Stack</Col>
+                        </Row><br />
+                        <Row>
+                            <Col>Email:</Col>
+                            <Col>Stack</Col>
+                        </Row><br />
+                        <Row>
+                            <Col>Phone:</Col>
+                            <Col>Stack</Col>
+                        </Row><br />
+                        <Row>
+                            <Col>Company:</Col>
+                            <Col>Stack</Col>
+                        </Row><br />
+                        <Row>
+                            <Col>Address:</Col>
+                            <Col>Stack</Col>
+                        </Row>
+                    </div>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small">Add</Button>
                 </CardActions>
             </Card>
 
