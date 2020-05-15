@@ -74,7 +74,7 @@ class Table extends React.Component {
                             width: 75
                         },
                         {
-                            Header: () => <div className="Header" >Basic info</div>,
+                            Header: () => <div className="Header" style={{ textAlign: 'initial' }} >Basic info</div>,
                             // accessor: 'name',
                             className: 'Name TextCenter',
                             headerClassName: 'Name TextCenter',
