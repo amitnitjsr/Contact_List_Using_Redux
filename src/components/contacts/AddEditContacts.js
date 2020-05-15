@@ -53,11 +53,7 @@ export default function MediaCard(props) {
                         </Row>
                     </div>
                 </CardContent>
-                <CardActions>
-                    <Button size="small">Add</Button>
-                </CardActions>
             </Card>
-
         </div>
     );
 }

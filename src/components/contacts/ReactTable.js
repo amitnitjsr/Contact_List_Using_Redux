@@ -4,12 +4,67 @@ import IconButton from '@material-ui/core/IconButton';
 import ContactList from './contactList';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
-import { Row, Col } from 'reactstrap';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import { withStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
+import { Row, Col, Button, Input } from 'reactstrap';
 import AddEditContact from './AddEditContacts';
 import './common.css';
 
-// const isItemSelected = isSelected(row.name);
-// const labelId = `enhanced-table-checkbox-${index}`;
+const styles = (theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2)
+        // borderRadius: '2% 94% 3% 94% / 88% 6% 88% 6%'
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        // color: theme.palette.grey[500]
+    },
+});
+
+const DialogActions = withStyles((theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(1)
+    }
+}))(MuiDialogActions);
+
+const DialogTitle = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+        <MuiDialogTitle
+            disableTypography
+            className={classes.root}
+            {...other}
+            style={{
+                // boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
+                background: '#1f2859'
+            }}
+        >
+            <Typography style={{ color: 'white' }} variant="h6">
+                {children}
+            </Typography>
+            {onClose ? (
+                <IconButton
+                    style={{ color: 'grey' }}
+                    aria-label="close"
+                    className={classes.closeButton}
+                    onClick={onClose}
+                >
+                    <CloseIcon />
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
+
 class Table extends React.Component {
     constructor(props) {
         super(props);
@@ -18,6 +73,13 @@ class Table extends React.Component {
             tableData: ContactList,
             selectedRow: null,
 
+            //add contact
+            showPopup: false,
+            name: '',
+            email: '',
+            phone: '',
+            address: '',
+            designation: '',
         }
     }
 
@@ -39,20 +101,120 @@ class Table extends React.Component {
 
         })
     }
+    saveHadler = () => {
+
+    }
+    addHandler = () => {
+        this.setState({
+            name: '', email: '',
+            address: '', company: '',
+            phone: '', designation: ''
+        });
+        this.popupToggle();
+    }
+
+    editHandler = () => {
+
+        if (this.state.selectedRow) {
+            this.setState({
+                name: this.state.selectedRow.name, email: this.state.selectedRow.email,
+                address: this.state.selectedRow.address, company: this.state.selectedRow.company,
+                phone: this.state.selectedRow.phone, designation: this.state.selectedRow.designation
+            });
+            this.popupToggle();
+        }
+    }
+    popupToggle = () => {
+        this.setState((preState) => {
+            return { showPopup: !preState.showPopup }
+        })
+    }
 
     render() {
-
+        let add_Edit_contact = (
+            <Dialog open={this.state.showPopup} onClose={this.popupToggle}>
+                <DialogTitle onClose={this.popupToggle} >
+                    {'Create: Contact'}
+                </DialogTitle>
+                <DialogContent>
+                    <Row style={{ padding: '5px' }}>
+                        <Col md='4' sm='4'  >
+                            <span
+                            >Full Name:</span>
+                        </Col>
+                        <Col md='8' sm='8'>
+                            <Input type='text' value={this.state.name} />
+                        </Col>
+                    </Row>
+                    <Row style={{ padding: '5px' }}>
+                        <Col md='4' sm='4'  >
+                            <span
+                            >Email:</span>
+                        </Col>
+                        <Col md='8' sm='8'>
+                            <Input type='text' value={this.state.email} />
+                        </Col>
+                    </Row>
+                    <Row style={{ padding: '5px' }}>
+                        <Col md='4' sm='4'>
+                            <span >Phone:</span>
+                        </Col>
+                        <Col md='8' sm='8'>
+                            <Input type='text' value={this.state.phone} />
+                        </Col>
+                    </Row>
+                    <Row style={{ padding: '5px' }}>
+                        <Col md='4' sm='4'>
+                            <span >Company:</span>
+                        </Col>
+                        <Col md='8' sm='8'>
+                            <Input type='text' value={this.state.company} />
+                        </Col>
+                    </Row>
+                    <Row style={{ padding: '5px' }}>
+                        <Col md='4' sm='4'>
+                            <span >Designation:</span>
+                        </Col>
+                        <Col md='8' sm='8'>
+                            <Input type='text' value={this.state.designation} />
+                        </Col>
+                    </Row>
+                    <Row style={{ padding: '5px' }}>
+                        <Col md='4' sm='4'>
+                            <span >Address:</span>
+                        </Col>
+                        <Col md='8' sm='8'>
+                            <Input type='text' value={this.state.address} />
+                        </Col>
+                    </Row>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.contactCreateHandler
+                        }
+                        disabled={this.state.validate || this.state.filesystemValidate || this.state.deviceValidate}
+                        style={{
+                            left: '-17px',
+                            position: 'relative',
+                        }}
+                    >
+                        Add
+                      </Button>
+                </DialogActions>
+            </Dialog >
+        );
         return (
             <div className="row">
+                {add_Edit_contact}
+
                 <div className="column" >
                     <div style={{ width: '850px', paddingLeft: '102px' }}>
                         <div >
-                            {/* {Object.keys(this.state.selected).length > 0 ?
-                    <IconButton onClick={() => this.deleteHandler()}>
-                        <i className="zmdi zmdi-delete zmdi-hc-fw table-icon" />
-                    </IconButton>
-                    : null} */}
-                            {/* {this.state.selectedRow? } */}
+                            <Button onClick={() => this.addHandler()}>Add contact</Button>
+                            <Button onClick={() => this.editHandler()}>Edit</Button>
+                            <Button>Delete</Button>
                             <ReactTable
                                 data={this.state.tableData ? this.state.tableData : []}
                                 columns={[
