@@ -11,49 +11,45 @@ import './AddEditContacts.css';
 import { Row, Col } from 'reactstrap';
 import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 140,
-    },
-});
 
-export default function MediaCard() {
-    const classes = useStyles();
+
+
+export default function MediaCard(props) {
+    console.log(props)
 
     return (
         <div>
-
             <Card className='card_body'>
                 <CardContent>
                     <Row className='xs'>
-                        <Avatar className="bg-secondary size-80"><span style={{ fontSize: '14px' }}>MK</span></Avatar>
-
+                        <Avatar className="bg-secondary size-80" style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{props.data.name.match(/\b(\w)/g).join('')}</span></Avatar>
                     </Row>
-                    <Row>Full Name</Row>
-                    <Row>Designaation</Row>
+                    <Row className='xs'>
+                        <span style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{props.data.name}</span></span>
+                    </Row>
+                    <Row className='xs'>
+                        <span style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{props.data.designation}</span></span>
+                    </Row><br /><br />
                     <div style={{ textAlign: 'initial' }}>
                         <Row>
                             <Col style={{ leftAlgin: 'auto' }}>Full Name:</Col>
-                            <Col>Stack</Col>
+                            <Col>{props.data.name}</Col>
                         </Row><br />
                         <Row>
                             <Col>Email:</Col>
-                            <Col>Stack</Col>
+                            <Col>{props.data.email}</Col>
                         </Row><br />
                         <Row>
                             <Col>Phone:</Col>
-                            <Col>Stack</Col>
+                            <Col>{props.data.phone}</Col>
                         </Row><br />
                         <Row>
                             <Col>Company:</Col>
-                            <Col>Stack</Col>
+                            <Col>{props.data.company}</Col>
                         </Row><br />
                         <Row>
                             <Col>Address:</Col>
-                            <Col>Stack</Col>
+                            <Col>{props.data.address}</Col>
                         </Row>
                     </div>
                 </CardContent>
