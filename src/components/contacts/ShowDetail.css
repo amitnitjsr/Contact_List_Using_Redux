@@ -3,3 +3,6 @@ width: 500px;
 margin-left: auto;
 height: fit-content;
 }
+.MuiCardContent-root{
+    background-color: #e9ecef;
+}

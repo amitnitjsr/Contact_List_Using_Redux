@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactTable from 'react-table';
 import IconButton from '@material-ui/core/IconButton';
-import ContactList from './contactList';
+import ContactList from '../data/contactList';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -12,8 +12,9 @@ import { withStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { Row, Col, Button, Input } from 'reactstrap';
-import AddEditContact from './AddEditContacts';
-import './common.css';
+import ShowDetail from './ShowDetail';
+import { connect } from "react-redux";
+import './ReactTable.css';
 
 const styles = (theme) => ({
     root: {
@@ -80,6 +81,7 @@ class Table extends React.Component {
             phone: '',
             address: '',
             designation: '',
+            editAdd: false,
         }
     }
 
@@ -105,10 +107,11 @@ class Table extends React.Component {
 
     }
     addHandler = () => {
+
         this.setState({
             name: '', email: '',
             address: '', company: '',
-            phone: '', designation: ''
+            phone: '', designation: '', editAdd: true
         });
         this.popupToggle();
     }
@@ -119,7 +122,8 @@ class Table extends React.Component {
             this.setState({
                 name: this.state.selectedRow.name, email: this.state.selectedRow.email,
                 address: this.state.selectedRow.address, company: this.state.selectedRow.company,
-                phone: this.state.selectedRow.phone, designation: this.state.selectedRow.designation
+                phone: this.state.selectedRow.phone, designation: this.state.selectedRow.designation,
+                editAdd: false
             });
             this.popupToggle();
         }
@@ -129,12 +133,24 @@ class Table extends React.Component {
             return { showPopup: !preState.showPopup }
         })
     }
-
+    handleSubmit = () => {
+        this.popupToggle();
+        // if (!this.phoneNumberValidater(this.state.phone)) {
+        //     alert("Invalid Phone Number");
+        //     return;
+        // }
+        this.props.pushList(this.state.name, this.state.phone, this.state.email, this.state.designation,
+            this.state.address);
+        // this.props.history.goBack();
+    }
+    inputChangeHandler = (name, e) => {
+        this.setState({ [name]: e.target.value })
+    }
     render() {
         let add_Edit_contact = (
             <Dialog open={this.state.showPopup} onClose={this.popupToggle}>
                 <DialogTitle onClose={this.popupToggle} >
-                    {'Create: Contact'}
+                    {this.state.editAdd ? 'Add: Contact' : 'Edit: Contact'}
                 </DialogTitle>
                 <DialogContent>
                     <Row style={{ padding: '5px' }}>
@@ -143,7 +159,8 @@ class Table extends React.Component {
                             >Full Name:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.name} />
+                            <Input type='text' value={this.state.name}
+                                onChange={(event) => this.inputChangeHandler('name', event)} />
                         </Col>
                     </Row>
                     <Row style={{ padding: '5px' }}>
@@ -152,7 +169,8 @@ class Table extends React.Component {
                             >Email:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.email} />
+                            <Input type='text' value={this.state.email}
+                                onChange={(event) => this.inputChangeHandler('email', event)} />
                         </Col>
                     </Row>
                     <Row style={{ padding: '5px' }}>
@@ -160,7 +178,8 @@ class Table extends React.Component {
                             <span >Phone:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.phone} />
+                            <Input type='text' value={this.state.phone}
+                                onChange={(event) => this.inputChangeHandler('phone', event)} />
                         </Col>
                     </Row>
                     <Row style={{ padding: '5px' }}>
@@ -168,7 +187,8 @@ class Table extends React.Component {
                             <span >Company:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.company} />
+                            <Input type='text' value={this.state.company}
+                                onChange={(event) => this.inputChangeHandler('company', event)} />
                         </Col>
                     </Row>
                     <Row style={{ padding: '5px' }}>
@@ -176,7 +196,8 @@ class Table extends React.Component {
                             <span >Designation:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.designation} />
+                            <Input type='text' value={this.state.designation}
+                                onChange={(event) => this.inputChangeHandler('designation', event)} />
                         </Col>
                     </Row>
                     <Row style={{ padding: '5px' }}>
@@ -184,7 +205,8 @@ class Table extends React.Component {
                             <span >Address:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.address} />
+                            <Input type='text' value={this.state.address}
+                                onChange={(event) => this.inputChangeHandler('address', event)} />
                         </Col>
                     </Row>
                 </DialogContent>
@@ -192,7 +214,7 @@ class Table extends React.Component {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={this.contactCreateHandler
+                        onClick={this.handleSubmit
                         }
                         disabled={this.state.validate || this.state.filesystemValidate || this.state.deviceValidate}
                         style={{
@@ -212,14 +234,14 @@ class Table extends React.Component {
                 <div className="column" >
                     <div style={{ width: '850px', paddingLeft: '102px' }}>
                         <div >
-                            <Button onClick={() => this.addHandler()}>Add contact</Button>
+                            <Button onClick={() => this.addHandler()}>+ Add Contact</Button>
                             <Button onClick={() => this.editHandler()}>Edit</Button>
-                            <Button>Delete</Button>
+                            <Button onClick={() => this.props.deleteListById(this.state.selected)}>Delete</Button>
                             <ReactTable
-                                data={this.state.tableData ? this.state.tableData : []}
+                                data={this.props.list ? this.props.list : []}
                                 columns={[
                                     {
-                                        Header: () => <div className="ID">+</div>,
+                                        Header: () => <div className="ID"><i class="zmdi zmdi-plus" /></div>,
                                         id: 'row',
                                         className: 'ID TextCenter',
                                         headerClassName: 'ID TextCenter',
@@ -328,9 +350,9 @@ class Table extends React.Component {
                                             },
                                             style: {
                                                 background:
-                                                    rowInfo.index === this.state.rowEdit ? "#00afec" : "white",
+                                                    rowInfo.index === this.state.rowEdit ? "#e9ecef" : "white",
                                                 color:
-                                                    rowInfo.index === this.state.rowEdit ? "white" : "black"
+                                                    rowInfo.index === this.state.rowEdit ? "black" : "black"
                                             }
                                         };
                                     } else {
@@ -344,16 +366,37 @@ class Table extends React.Component {
                 </div>
                 <div className="column" >
                     {this.state.selectedRow ?
-                        <AddEditContact data={this.state.selectedRow} /> :
+                        <ShowDetail data={this.state.selectedRow} /> :
                         null
                     }
 
                 </div>
             </div>
-
-
         );
     }
 }
 
-export default Table;
+
+const mapStateToProps = (state) => {
+    return {
+        list: state.list,
+    }
+}
+
+const mapDispachToProps = (dispatch) => {
+    return {
+        deleteListById: (id) => { dispatch({ type: "deleteListById", payload: { "id": id } }) },
+        pushList: (name, phone, email, designation, address, company) => {
+            dispatch({
+                type: 'pushList',
+                payload: {
+                    "name": name, "phone": phone, "email": email,
+                    "designation": designation, "address": address,
+                    "company": company
+                }
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispachToProps)(Table);

@@ -50,7 +50,7 @@ export default [
     'phone': '+1-215-876-8596',
     'address': 'Chennai, Tamil Nadu',
   }, {
-    'id': 1457690406,
+    'id': 7,
     'name': 'Domnic Harris',
     'company': 'Google',
     'designation': 'Software Engineer at Google',
