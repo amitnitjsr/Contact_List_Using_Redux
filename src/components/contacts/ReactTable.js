@@ -140,8 +140,7 @@ class Table extends React.Component {
         //     return;
         // }
         this.props.pushList(this.state.name, this.state.phone, this.state.email, this.state.designation,
-            this.state.address);
-        // this.props.history.goBack();
+            this.state.address, this.state.company);
     }
     inputChangeHandler = (name, e) => {
         this.setState({ [name]: e.target.value })
