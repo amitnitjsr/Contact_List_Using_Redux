@@ -14,7 +14,7 @@ import ColorName from './ColorData';
 
 
 export default function MediaCard(props) {
-    console.log('show', props.colors)
+
     return (
         <div>
             <Card className='card_body'>

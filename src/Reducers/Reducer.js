@@ -28,6 +28,9 @@ const reducer = (state = iState, action) => {
                 // ages = state.list.filter(data => data.id !== val[0])
                 // console.log('filter', state.list.filter(data => data.id !== val[0]))
             })
+        case "editListById":
+
+            return state;
         default:
             return state;
     }

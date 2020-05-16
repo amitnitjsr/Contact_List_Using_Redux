@@ -113,10 +113,10 @@
     outline: none;
   }
   .MuiDialogTitle-root {
-    background-color: #e9ecef!important;
+    background-color: #ed4760!important;
   }
   .MuiTypography-root {
-    color: #0f0e0e!important;
+    color: #fff !important;
   }
   
   .ReactTable .rt-thead.-filters .rt-th {
@@ -687,5 +687,19 @@
     
   }
   .button_color:hover{
-    background: #bb263d;
+    background: #bb263d!important;
   }
+  .btn-secondary {
+    color: #fff;
+    background-color: #ed4760 !important;
+    /* border-color: #6c757d; */
+}
+.button_pos{
+  left: -21px;
+  position: relative !important;
+  color: #fff; 
+  background-color: #ed4760 !important;                        
+}
+.MuiIconButton-label{
+  color: #fff !important;
+}

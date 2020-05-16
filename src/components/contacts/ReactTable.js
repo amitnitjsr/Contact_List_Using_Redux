@@ -96,14 +96,14 @@ class Table extends React.Component {
         this.setState({ selected: newSelected }, () => {
             if (this.state.selected[row.id] === false) {
                 delete this.state.selected[row.id];
-                console.log(this.state.selected, Object.keys(this.state.selected).length)
+                // console.log(this.state.selected, Object.keys(this.state.selected).length)
             }
         })
     }
     deleteHandler = () => {
         var result = Object.entries(this.state.selected);
         result.map((val, ind) => {
-            console.log(val[0])
+            // console.log(val[0])
             delete this.state.tableData.pop(val[0]);
 
         })
@@ -131,6 +131,8 @@ class Table extends React.Component {
                 editAdd: false
             });
             this.popupToggle();
+            this.props.editListById(this.state.selectedRow.id, this.state.name, this.state.phone, this.state.email, this.state.designation,
+                this.state.address, this.state.company);
         }
     }
     popupToggle = () => {
@@ -169,15 +171,14 @@ class Table extends React.Component {
                     this.setState({ phoneValidation: false })
                 else
                     this.setState({ phoneValidation: true })
-                console.log(this.state.phoneValidation)
             }
         })
     }
     render() {
-        {
-            console.log('this.props.list.length', this.props.list, this.props.list
-                , typeof (this.props.list))
-        }
+
+        console.log('this.props.list.length', this.props.list, this.props.list
+            , typeof (this.props.list))
+
         let add_Edit_contact = (
             <Dialog open={this.state.showPopup} onClose={this.popupToggle}>
                 <DialogTitle onClose={this.popupToggle} >
@@ -243,17 +244,11 @@ class Table extends React.Component {
                 </DialogContent>
                 <DialogActions>
                     <Button
-                        variant="contained"
-                        // color="primary"
                         onClick={this.handleSubmit
                         }
                         disabled={this.state.nameValidation || this.state.emailValidation
                             || this.state.phoneValidation}
-                        style={{
-                            left: '-21px',
-                            position: 'relative',
-                            color: 'black', backgroundColor: '#e9ecef'
-                        }}
+                        className='button_pos'
                     >
                         Add
                       </Button>
@@ -261,7 +256,7 @@ class Table extends React.Component {
             </Dialog >
         );
         return (
-            <div className="row">
+            <div className="row" style={{ paddingTop: '100px' }}>
                 {add_Edit_contact}
 
                 <div className="column" >
@@ -313,7 +308,7 @@ class Table extends React.Component {
                                         headerClassName: 'Name TextCenter',
                                         Cell: (row) => {
                                             colors = ColorName[Math.floor(Math.random() * ColorName.length)]
-                                            console.log('table', colors)
+                                            // console.log('table', colors)
                                             return (
                                                 <div style={{ padding: '13px' }}>
                                                     <Row>
@@ -341,31 +336,7 @@ class Table extends React.Component {
                                         className: 'Description TextCenter',
                                         headerClassName: 'Description TextCenter'
                                     },
-                                    // {
-                                    //     Header: 'Action',
-                                    //     sortable: false,
-                                    //     filterable: false,
-                                    //     className: 'Action TextCenter',
-                                    //     headerClassName: 'Action TextCenter',
-                                    //     id: 'button',
-                                    //     style: { textAlign: 'center' },
-                                    //     width: 200,
-                                    //     Cell: (row) => {
-                                    //         return (
-                                    //             <span>
-                                    //                 <IconButton
-                                    //                     className=""
-                                    //                     onClick={() =>
-                                    //                         this.props.history.push(
-                                    //                             '/credentials/edit/' + row.row._original.id + '/'
-                                    //                         )}
-                                    //                 >
-                                    //                     <i className="zmdi zmdi-edit zmdi-hc-fw table-icon" />
-                                    //                 </IconButton>
-                                    //             </span>
-                                    //         );
-                                    //     }
-                                    // }
+
                                 ]}
                                 pageSize={this.props.list.length}
 
@@ -437,6 +408,16 @@ const mapDispachToProps = (dispatch) => {
                 type: 'pushList',
                 payload: {
                     "name": name, "phone": phone, "email": email,
+                    "designation": designation, "address": address,
+                    "company": company
+                }
+            })
+        },
+        editListById: (id, name, phone, email, designation, address, company) => {
+            dispatch({
+                type: 'editListById',
+                payload: {
+                    "id": id, "name": name, "phone": phone, "email": email,
                     "designation": designation, "address": address,
                     "company": company
                 }

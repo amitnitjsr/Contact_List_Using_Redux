@@ -1,8 +1,12 @@
-.bg-light {
+/* .bg-light {
     background-color: #00000026!important;
 }
 .navbar {
     padding: 10px;
-    /* border: solid; */
+    
     background-color: #fff;
+} */
+.MuiAppBar-colorPrimary {
+    color: #212529 !important;
+    background-color: #e9ecef !important;
 }
