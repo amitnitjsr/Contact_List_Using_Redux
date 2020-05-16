@@ -48,6 +48,7 @@ export default function Sidenav() {
                 </Toolbar>
             </AppBar>
             <Drawer
+                style={{ backgroundColor: 'red' }}
                 className={classes.drawer}
                 variant="permanent"
                 classes={{

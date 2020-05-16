@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactTable from 'react-table';
 import IconButton from '@material-ui/core/IconButton';
-import ContactList from '../data/contactList';
+// import ContactList from '../data/contactList';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -14,8 +14,10 @@ import Typography from '@material-ui/core/Typography';
 import { Row, Col, Button, Input } from 'reactstrap';
 import ShowDetail from './ShowDetail';
 import { connect } from "react-redux";
+import ColorName from './ColorData';
 import './ReactTable.css';
 
+var colors = ''
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -71,7 +73,7 @@ class Table extends React.Component {
         super(props);
         this.state = {
             selected: {},
-            tableData: ContactList,
+            tableData: this.props.list,
             selectedRow: null,
 
             //add contact
@@ -82,6 +84,9 @@ class Table extends React.Component {
             address: '',
             designation: '',
             editAdd: false,
+            nameValidation: false,
+            emailValidation: false,
+            phoneValidation: false
         }
     }
 
@@ -143,9 +148,36 @@ class Table extends React.Component {
             this.state.address, this.state.company);
     }
     inputChangeHandler = (name, e) => {
-        this.setState({ [name]: e.target.value })
+        this.setState({ [name]: e.target.value }, () => {
+            if (name === 'name') {
+                const name = /\b\w+\b(?:.*?\b\w+\b){1}/
+                if (this.state.name.match(name))
+                    this.setState({ nameValidation: false })
+                else
+                    this.setState({ nameValidation: true })
+            }
+            else if (name === 'email') {
+                const email = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+                if (this.state.email.match(email))
+                    this.setState({ emailValidation: false })
+                else
+                    this.setState({ emailValidation: true })
+            }
+            else if (name === 'phone') {
+                const regularExpression = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                if (this.state.phone.match(regularExpression))
+                    this.setState({ phoneValidation: false })
+                else
+                    this.setState({ phoneValidation: true })
+                console.log(this.state.phoneValidation)
+            }
+        })
     }
     render() {
+        {
+            console.log('this.props.list.length', this.props.list, this.props.list
+                , typeof (this.props.list))
+        }
         let add_Edit_contact = (
             <Dialog open={this.state.showPopup} onClose={this.popupToggle}>
                 <DialogTitle onClose={this.popupToggle} >
@@ -158,7 +190,7 @@ class Table extends React.Component {
                             >Full Name:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.name}
+                            <Input type='text' value={this.state.name} invalid={this.state.nameValidation}
                                 onChange={(event) => this.inputChangeHandler('name', event)} />
                         </Col>
                     </Row>
@@ -168,7 +200,7 @@ class Table extends React.Component {
                             >Email:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.email}
+                            <Input type='text' value={this.state.email} invalid={this.state.emailValidation}
                                 onChange={(event) => this.inputChangeHandler('email', event)} />
                         </Col>
                     </Row>
@@ -177,7 +209,7 @@ class Table extends React.Component {
                             <span >Phone:</span>
                         </Col>
                         <Col md='8' sm='8'>
-                            <Input type='text' value={this.state.phone}
+                            <Input type='number' value={this.state.phone} invalid={this.state.phoneValidation}
                                 onChange={(event) => this.inputChangeHandler('phone', event)} />
                         </Col>
                     </Row>
@@ -212,13 +244,15 @@ class Table extends React.Component {
                 <DialogActions>
                     <Button
                         variant="contained"
-                        color="primary"
+                        // color="primary"
                         onClick={this.handleSubmit
                         }
-                        disabled={this.state.validate || this.state.filesystemValidate || this.state.deviceValidate}
+                        disabled={this.state.nameValidation || this.state.emailValidation
+                            || this.state.phoneValidation}
                         style={{
-                            left: '-17px',
+                            left: '-21px',
                             position: 'relative',
+                            color: 'black', backgroundColor: '#e9ecef'
                         }}
                     >
                         Add
@@ -233,9 +267,18 @@ class Table extends React.Component {
                 <div className="column" >
                     <div style={{ width: '850px', paddingLeft: '102px' }}>
                         <div >
-                            <Button onClick={() => this.addHandler()}>+ Add Contact</Button>
-                            <Button onClick={() => this.editHandler()}>Edit</Button>
-                            <Button onClick={() => this.props.deleteListById(this.state.selected)}>Delete</Button>
+                            <Row >
+                                <Col> <form class="example" style={{ maxWidth: '280px' }}>
+                                    <input type="text" placeholder="Search.." name="search2" />
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                                </Col>
+                                <Col>
+                                    <Button className='button_color' onClick={() => this.addHandler()}>+ Add Contact</Button>
+                                    &nbsp;<Button className='button_color' onClick={() => this.editHandler()}>Edit</Button>
+                                    &nbsp;<Button className='button_color' onClick={() => this.props.deleteListById(this.state.selected)}>Delete</Button>
+                                </Col>
+                            </Row>
                             <ReactTable
                                 data={this.props.list ? this.props.list : []}
                                 columns={[
@@ -269,10 +312,13 @@ class Table extends React.Component {
                                         className: 'Name TextCenter',
                                         headerClassName: 'Name TextCenter',
                                         Cell: (row) => {
+                                            colors = ColorName[Math.floor(Math.random() * ColorName.length)]
+                                            console.log('table', colors)
                                             return (
                                                 <div style={{ padding: '13px' }}>
                                                     <Row>
-                                                        <Avatar className="bg-secondary size-80">
+                                                        <Avatar
+                                                            style={{ backgroundColor: colors }}>
                                                             <span style={{ fontSize: '14px' }}>
                                                                 {row.row._original.name.match(/\b(\w)/g).join('')}
                                                             </span></Avatar>
@@ -321,7 +367,8 @@ class Table extends React.Component {
                                     //     }
                                     // }
                                 ]}
-                                pageSize={this.state.tableData.length}
+                                pageSize={this.props.list.length}
+
                                 showPaginationBottom={false}
                                 getTrProps={(state, rowInfo) => {
                                     if (rowInfo && rowInfo.row) {
@@ -365,12 +412,12 @@ class Table extends React.Component {
                 </div>
                 <div className="column" >
                     {this.state.selectedRow ?
-                        <ShowDetail data={this.state.selectedRow} /> :
+                        <ShowDetail data={this.state.selectedRow} colors={colors} /> :
                         null
                     }
 
                 </div>
-            </div>
+            </div >
         );
     }
 }

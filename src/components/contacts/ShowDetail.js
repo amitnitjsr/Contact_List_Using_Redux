@@ -10,17 +10,26 @@ import CardContent from '@material-ui/core/CardContent';
 import './ShowDetail.css';
 import { Row, Col } from 'reactstrap';
 import Avatar from '@material-ui/core/Avatar';
+import ColorName from './ColorData';
 
 
 export default function MediaCard(props) {
-
-
+    console.log('show', props.colors)
     return (
         <div>
             <Card className='card_body'>
                 <CardContent>
                     <Row className='xs'>
-                        <Avatar className="bg-secondary size-80" style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{props.data.name.match(/\b(\w)/g).join('')}</span></Avatar>
+                        <Avatar style={{
+                            margin: 'auto',
+                            backgroundColor: props.colors
+                        }}>
+                            <span style={{
+                                fontSize: '14px',
+
+                            }}>
+                                {props.data.name.match(/\b(\w)/g).join('')}</span>
+                        </Avatar>
                     </Row>
                     <Row className='xs'>
                         <span style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{props.data.name}</span></span>

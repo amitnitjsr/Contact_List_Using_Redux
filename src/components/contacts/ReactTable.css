@@ -112,6 +112,12 @@
     font-weight: normal;
     outline: none;
   }
+  .MuiDialogTitle-root {
+    background-color: #e9ecef!important;
+  }
+  .MuiTypography-root {
+    color: #0f0e0e!important;
+  }
   
   .ReactTable .rt-thead.-filters .rt-th {
     border-right: 1px solid rgba(0, 0, 0, 0.02);
@@ -633,4 +639,53 @@
   }
   .ReactTable{
     margin-left: auto!important;
+  }
+
+   /* search button */
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Style the search field */
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+    border-radius: 3ppx;
+  }
+  
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #ed4760;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  form.example button:hover {
+    background: #bb263d;
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .button_color{
+    background-color:#ed4760;
+    
+  }
+  .button_color:hover{
+    background: #bb263d;
   }

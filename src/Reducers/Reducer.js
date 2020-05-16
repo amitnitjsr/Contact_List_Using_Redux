@@ -13,7 +13,7 @@ const reducer = (state = iState, action) => {
                 address: action.payload.address, company: action.payload.company, email: action.payload.email
             }];
             state.list = list;
-            console.log('state', state)
+            console.log('state', state, list)
             return state;
 
         case "deleteListById":
