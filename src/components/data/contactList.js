@@ -5,7 +5,7 @@ export default [
     'company': 'Adobe',
     'designation': 'Product Manager at Adobe',
     'email': 'stella.johnson@example.com',
-    'phone': '+1-215-659-7529',
+    'phone': 9456597529,
     'address': 'Chennai, Tamil Nadu',
 
   }, {
@@ -14,7 +14,7 @@ export default [
     'company': 'Amazon',
     'designation': 'Product Manager at Amazon',
     'email': 'garry.sobars@example.com',
-    'phone': '+1-215-745-7529',
+    'phone': 8557457529,
     'address': 'Chennai, Tamil Nadu',
   },
   {
@@ -23,7 +23,7 @@ export default [
     'company': 'Flipkart',
     'designation': 'React Developer at Flipkart',
     'email': 'alex.dolgove@example.com',
-    'phone': '+1-215-748-7855',
+    'phone': 9257487855,
     'address': 'Chennai, Tamil Nadu',
   }, {
     'id': 4,
@@ -31,7 +31,7 @@ export default [
     'company': 'Yahoo',
     'designation': 'React Developer at Yahoo',
     'email': 'domnic.brown@example.com',
-    'phone': '+1-215-756-4579',
+    'phone': 6257564579,
     'address': 'Chennai, Tamil Nadu',
   }, {
     'id': 5,
@@ -39,7 +39,7 @@ export default [
     'company': 'microsoft',
     'designation': 'Data Sceince at Microsoft',
     'email': 'kadir.m@example.com',
-    'phone': '+1-215-659-7586',
+    'phone': 7857564579,
     'address': 'Chennai, Tamil Nadu',
   }, {
     'id': 6,
@@ -47,7 +47,7 @@ export default [
     'company': 'Dell',
     'designation': 'Software Engineer at Dell',
     'email': 'john.smith@example.com',
-    'phone': '+1-215-876-8596',
+    'phone': 9257564579,
     'address': 'Chennai, Tamil Nadu',
   }, {
     'id': 7,
@@ -55,7 +55,7 @@ export default [
     'company': 'Google',
     'designation': 'Software Engineer at Google',
     'email': 'domnic.harris@example.com',
-    'phone': '+1-215-785-3841',
+    'phone': 8257564579,
     'address': 'Chennai, Tamil Nadu',
   }
 ]

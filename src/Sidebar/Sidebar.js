@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Sidebar.css';
-import { withRouter, Link } from 'react-router-dom';
-import { Collapse, Button, Col, Row } from 'reactstrap';
+// import { withRouter } from 'react-router-dom';
+import { Row } from 'reactstrap';
 
 class Sidebar extends Component {
     constructor(props) {
@@ -21,17 +21,17 @@ class Sidebar extends Component {
         return (
             <div className="sidenav">
                 <Row className='btn-pos'>
-                    <i class="zmdi zmdi-format-subject"></i>
+                    <i className="zmdi zmdi-format-subject"></i>
                 </Row><br />&nbsp;;
                 <Row className='btn-pos'>
-                    <i class="zmdi zmdi-home zmdi-hc-lg"></i>
+                    <i className="zmdi zmdi-home zmdi-hc-lg"></i>
                 </Row>&nbsp;&nbsp;
                 <Row className='btn-pos'>
-                    <i class="zmdi zmdi-account-o zmdi-hc-lg"></i>
+                    <i className="zmdi zmdi-account-o zmdi-hc-lg"></i>
                 </Row>
             </div>
         )
     }
 }
 
-export default withRouter(Sidebar);
+export default Sidebar;

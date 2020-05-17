@@ -113,7 +113,10 @@
     outline: none;
   }
   .MuiDialogTitle-root {
-    background-color: #ed4760!important;
+    background-color: #dc3582fc!important;
+    /* background: rgb(2,0,36); */
+    background-color: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%) !important;
+
   }
   .MuiTypography-root {
     color: #fff !important;
@@ -663,17 +666,23 @@
     float: left;
     width: 20%;
     padding: 10px;
-    background: #ed4760;
-    color: white;
+    /* background: #ed4760;
+    color: white; */
     font-size: 17px;
     border: 1px solid grey;
     border-left: none; /* Prevent double borders */
     cursor: pointer;
     border-radius: 3px;
+    background: rgb(2,0,36);
+    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%);
+
   }
   
   form.example button:hover {
-    background: #bb263d;
+    background: rgb(2,0,36);
+    background: linear-gradient(50deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 6%, rgba(229,66,102,1) 81%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%);
+  
+    /* background: #bb263d; */
   }
   
   /* Clear floats */
@@ -687,11 +696,20 @@
     
   }
   .button_color:hover{
-    background: #bb263d!important;
+    /* background: #bb263d!important; */
+    /* background: rgb(2,0,36);
+    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%); */
+    /* background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 68%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%); */
+    background: rgb(2,0,36);
+    background: linear-gradient(50deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 6%, rgba(229,66,102,1) 81%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%);
   }
   .btn-secondary {
-    color: #fff;
-    background-color: #ed4760 !important;
+    background: rgb(2,0,36);
+    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%);
+
+    /* color: #fff;
+    background-color: #ed4760 !important; */
     /* border-color: #6c757d; */
 }
 .button_pos{
@@ -700,6 +718,11 @@
   color: #fff; 
   background-color: #ed4760 !important;                        
 }
-.MuiIconButton-label{
-  color: #fff !important;
+
+
+.MuiCheckbox-root {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+.MuiIconButton-label {
+  color: #6c757d !important;
 }

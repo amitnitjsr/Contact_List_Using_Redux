@@ -1,13 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
 import './Navbar.css';
-import { Divider } from '@material-ui/core';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 72;
@@ -36,28 +32,33 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 function Navbar(props) {
     const classes = useStyles();
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <span>
-                        <i class="zmdi zmdi-search zmdi-hc-lg"></i>
+                        <i className="zmdi zmdi-search zmdi-hc-lg"></i>
                     </span>
-                    <div className="col-md-5 col-sm-5 ml-auto">
+                    <div className="col-md-2 col-sm-2 ml-auto">
                         <Row>
-                            <Col> <i class="zmdi zmdi-plus"></i> Add</Col>
-                            <Col> <i class="zmdi zmdi-email"></i></Col>
-                            <Col> <i class="zmdi zmdi-notifications-none icon-alert animated infinite wobble"></i></Col>
-                            <Col>
-                                <i class="zmdi zmdi-notifications-add zmdi-hc-lg"></i>
-                            </Col>
+                            <span>
+                                <i className="zmdi zmdi-plus "></i>Add
+                            </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>
+                                <i className="zmdi zmdi-email zmdi-hc-lg"></i>
+                            </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           <span>
+                                <i className="zmdi zmdi-notifications-add zmdi-hc-lg"></i>
+                            </span>
                         </Row>
                     </div>
                 </Toolbar>
             </AppBar>
-        </div>
+        </div >
 
     );
 }
