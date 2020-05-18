@@ -296,7 +296,7 @@ class Table extends React.Component {
                                 Cell: (row) => {
                                     return (
                                         <Checkbox
-                                            color="red"
+                                            // color="red"
                                             checked={this.state.selected[row.row._original.id] === true}
                                             onChange={() => {
                                                 this.toggleRow(row.row._original);
@@ -399,7 +399,8 @@ class Table extends React.Component {
                 </Col>
                 <Col md="2">
                     {this.state.selectedRow ?
-                        <ShowDetail data={this.state.selectedRow} /> :
+                        <ShowDetail data={this.state.selectedRow}
+                            date={new Date().toDateString() + ',' + new Date().toLocaleTimeString()} /> :
                         null
                     }
                 </Col>

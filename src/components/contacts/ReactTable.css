@@ -714,6 +714,9 @@
   color: rgba(0, 0, 0, 0.54) !important;
 }
 .MuiIconButton-label {
-  /* color: #6c757d !important; */
-  color: #f8f9fa !important;
+  color: #6c757d !important;
+  /* color: #f8f9fa !important; */
 }
+/* .MuiSvgIcon-root{
+  color: #fff!important;
+} */

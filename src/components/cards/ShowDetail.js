@@ -11,14 +11,8 @@ class ShowDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: ''
+            date: this.props.date,
         }
-    }
-    componentDidMount() {
-        let t = new Date().toDateString() + ',' + new Date().toLocaleTimeString()
-        this.setState(
-            { date: t }
-        )
     }
 
     render() {
@@ -75,7 +69,7 @@ class ShowDetails extends React.Component {
                             <span style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>Tax Evasion & Payout Notice</span></span>
                         </Row>
                         <Row className='xs'>
-                            <span style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{this.state.date}</span></span>
+                            <span style={{ margin: 'auto' }}><span style={{ fontSize: '14px' }}>{this.props.date}</span></span>
                         </Row>
                     </CardContent>
                 </Card>
