@@ -347,7 +347,9 @@ class Table extends React.Component {
                                 foldable: true,
                                 className: 'company TextCenter',
                                 headerClassName: 'company TextCenter',
-                                style: { textAlign: 'center' }
+                                style: {
+                                    textAlign: 'center', position: 'relative', marginTop: '4%'
+                                }
                             },
 
                         ]}
