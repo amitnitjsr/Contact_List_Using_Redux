@@ -257,8 +257,8 @@ class Table extends React.Component {
                             || this.state.phoneValidation}
                         className='button_pos'
                     >
-                        Add
-                      </Button>
+                        {this.state.editAdd ? 'Add' : 'Edit'}
+                    </Button>
                 </DialogActions>
             </Dialog >
         );

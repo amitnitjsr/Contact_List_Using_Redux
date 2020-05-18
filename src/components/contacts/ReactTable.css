@@ -670,9 +670,9 @@
   }
   
   form.example button:hover {
-    background: rgb(2,0,36);
-    background: linear-gradient(50deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 6%, rgba(229,66,102,1) 81%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%);
-  
+    /* background: rgb(2,0,36); */
+    /* background: linear-gradient(50deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 6%, rgba(229,66,102,1) 81%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%); */
+    background: #dc3582fc!important;
     /* background: #bb263d; */
   }
   
@@ -687,13 +687,9 @@
     
   }
   .button_color:hover{
-    /* background: #bb263d!important; */
+    background: #dc3582fc!important;
     /* background: rgb(2,0,36);
-    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%); */
-    /* background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 68%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%); */
-    background: rgb(2,0,36);
-    background: linear-gradient(50deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 6%, rgba(229,66,102,1) 81%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%);
+    background: linear-gradient(50deg, rgba(2,0,36,1) 0%, rgba(222,8,152,1) 0%, rgba(227,46,120,1) 0%, rgba(230,71,98,1) 6%, rgba(229,66,102,1) 81%, rgba(240,142,37,1) 100%, rgba(245,178,7,0.969625350140056) 100%, rgba(255,0,219,1) 100%); */
   }
   .btn-secondary {
     background: rgb(2,0,36);
@@ -710,10 +706,14 @@
   background-color: #ed4760 !important;                        
 }
 
+.button_pos:hover{
+  background: #dc3582fc!important;                       
+}
 
 .MuiCheckbox-root {
   color: rgba(0, 0, 0, 0.54) !important;
 }
 .MuiIconButton-label {
-  color: #6c757d !important;
+  /* color: #6c757d !important; */
+  color: #f8f9fa !important;
 }
