@@ -11,9 +11,9 @@ import { withStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { Row, Col, Button, Input } from 'reactstrap';
-import ShowDetail from './ShowDetail';
+import ShowDetail from '../cards/ShowDetail';
 import { connect } from "react-redux";
-import ColorName from './ColorData';
+import ColorName from '../data/ColorData';
 import './ReactTable.css';
 
 const styles = (theme) => ({
@@ -266,7 +266,7 @@ class Table extends React.Component {
 
             <div className="row" style={{ paddingTop: '100px' }}>
                 {add_Edit_contact}
-                <Col md='1'></Col>
+                <Col md='1' ></Col>
                 <Col md="6">
                     <Row >
                         <Col sm="6"> <form className="example" style={{ maxWidth: '280px' }}>

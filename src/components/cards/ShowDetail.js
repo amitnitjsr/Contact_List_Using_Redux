@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import './ShowDetail.css';
 import { Row, Col } from 'reactstrap';
 import Avatar from '@material-ui/core/Avatar';
-import ColorName from './ColorData';
+import ColorName from '../data/ColorData';
 
 
 class ShowDetails extends React.Component {
