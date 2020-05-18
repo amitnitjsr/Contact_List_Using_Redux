@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## Project Deployed in the following link
-DEMO : (https://adoring-lalande-e285a2.netlify.app/) for more information.
+DEMO : (https://upbeat-goldberg-07c45b.netlify.app/) for more information.
 
 ## Table of Contents
 
