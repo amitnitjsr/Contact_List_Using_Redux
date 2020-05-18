@@ -73,7 +73,26 @@
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+
   }
+
+  /* @media screen and (min-width: 500px) {
+    .sidenav {padding-top: 15px; visibility: hidden;}
+    .sidenav a {font-size: 18px;}
+
+  } */
+  /* @media screen and (max-width: 550px) {
+    .sidenav {padding-top: 15px; }
+    .sidenav a {font-size: 18px;}
+
+  } */
   
-  
+
+
+  /* @media screen and (min-width: 600px){
+    .sidenav {
+      padding-top: 15px;
+      visibility: hidden;
+  }
+  } */
   

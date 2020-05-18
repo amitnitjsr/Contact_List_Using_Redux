@@ -22,7 +22,7 @@ class Sidebar extends Component {
             <div className="sidenav">
                 <Row className='btn-pos'>
                     <i className="zmdi zmdi-format-subject"></i>
-                </Row><br />&nbsp;;
+                </Row><br />&nbsp;
                 <Row className='btn-pos'>
                     <i className="zmdi zmdi-home zmdi-hc-lg"></i>
                 </Row>&nbsp;&nbsp;
